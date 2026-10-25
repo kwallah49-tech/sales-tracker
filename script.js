@@ -625,3 +625,12 @@ function startTracker() {
 }
 
 startTracker();
+
+// Register the service worker after the page loads so the app can work offline.
+window.addEventListener("load", () => {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js").catch((error) => {
+      console.error("Service worker registration failed:", error);
+    });
+  }
+});
